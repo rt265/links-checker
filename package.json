@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Link Checker",
   "scripts": {
-    "build": "ncc build src/main.js -o dist --minify --license licenses.txt",    
+    "build": "ncc build src/main.js -o dist --minify --license licenses.txt",
     "prepare": "npm run build"
   },
   "engines": {
@@ -13,9 +13,9 @@
     "@actions/core": "^1.10.0",
     "@actions/github": "^6.0.0",
     "@octokit/rest": "latest",
-    "js-yaml": "latest",
     "axios": "latest",
-    "cheerio": "latest"
+    "cheerio": "latest",
+    "js-yaml": "latest"
   },
   "devDependencies": {
     "@vercel/ncc": "^0.38.0"

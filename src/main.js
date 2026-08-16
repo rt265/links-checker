@@ -10,14 +10,17 @@ const config = {
   exclude_issue_with_labels: (core.getInput('exclude_issue_with_labels') || '审核中, 白名单').split(',').map(s => s.trim()),
   // 站点检查设置
   // 定义常量
-  MAX_CONCURRENT_REQUESTS: 5,
+  MAX_CONCURRENT_REQUESTS: 3,
   REQUEST_DELAY_MIN: 1000,
   REQUEST_DELAY_MAX: 3000,
-  REQUEST_USER_AGENTS: [
-    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
-  ],
-  REQUEST_HEADERS: {},
+  REQUEST_HEADERS: {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36",
+    "Accept": "text/html,application/xhtml+xml,application/xml",
+    "Accept-Encoding": "gzip, deflate, br, zstd",
+    "Accept-Language": "zh-CN,zh;q=0.9,en;q=0.8",
+    "Cache-Control": "max-age=0",
+    "Connection": "close"
+  },
   REQUEST_TIMEOUT: 10000,
 
   accepted_codes: core.getInput('accepted_codes') || '200,301',
@@ -39,18 +42,9 @@ async function checkSite(item) {
     const delay = Math.floor(Math.random() * (config.REQUEST_DELAY_MAX - config.REQUEST_DELAY_MIN)) + config.REQUEST_DELAY_MIN;
     await new Promise(resolve => setTimeout(resolve, delay));
     
-    // 随机选择 User-Agent
-    const randomUserAgent = config.REQUEST_USER_AGENTS[Math.floor(Math.random() * config.REQUEST_USER_AGENTS.length)];
-    
-    // 构建请求头
-    const requestHeadersWithUA = {
-      'User-Agent': randomUserAgent,
-      ...config.REQUEST_HEADERS
-    };
-    
     const response = await axios.get(url, {
       timeout: config.REQUEST_TIMEOUT,
-      headers: requestHeadersWithUA,
+      headers: config.REQUEST_HEADERS,
       validateStatus: status => status < 500 // 允许除500以外的状态码
     });
 
