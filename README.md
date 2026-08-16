@@ -2,6 +2,8 @@
 
 一个用于检查仓库中失效链接的 GitHub Action。
 
+添加了更加细化的 Headers 并透明标注 `(link-checker/1.0; +https://github.com/xaoxuu/links-checker)`，可用于 WAF 放行。
+
 ## 使用方法
 
 将以下内容添加到你的工作流文件（例如：`.github/workflows/reachability-checker.yml`）中：

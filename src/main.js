@@ -14,7 +14,7 @@ const config = {
   REQUEST_DELAY_MIN: 1000,
   REQUEST_DELAY_MAX: 3000,
   REQUEST_HEADERS: {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36",
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36 (link-checker/1.0; +https://github.com/xaoxuu/links-checker)",
     "Accept": "text/html,application/xhtml+xml,application/xml",
     "Accept-Encoding": "gzip, deflate, br, zstd",
     "Accept-Language": "zh-CN,zh;q=0.9,en;q=0.8",
